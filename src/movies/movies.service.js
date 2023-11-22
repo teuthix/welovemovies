@@ -2,8 +2,23 @@ const knex = require("../db/connection");
 
 function list() {
     return knex("movies").select("*");
+};
+
+function showingProvided() {
+    return knex("movies as m")
+        .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
+        .join("theaters as t", "mt.theater_id", "t.theater_id")
+        .select("m.*")
+        .where({ "mt.is_showing": true })
+        .first();
+};
+
+function read(movie_Id) {
+    return knex("movies").select("*").where({ "movie_Id": movie_Id }).first();
 }
 
 module.exports = {
     list,
+    showingProvided,
+    read,
 };
