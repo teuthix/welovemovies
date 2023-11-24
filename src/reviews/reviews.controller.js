@@ -18,9 +18,9 @@ async function update(req, res, next){
     };
     console.log(updatedReview, "test");
     const data = await reviewsService.update(updatedReview);
-    res.json({data});
+    res.json({data: updatedReview});
 }
 
 module.exports = {
-    update: [asyncErrorBoundary(update)],
+    update: [asyncErrorBoundary(reviewExists), update],
 };

@@ -8,6 +8,11 @@ function update(updatedReview) {
         .then((updated) => updated[0]);
 }
 
+function read(review_Id) {
+    return knex("reviews").select("*").where({ "review_Id": review_Id }).first();
+}
+
 module.exports = {
     update,
+    read
 };
