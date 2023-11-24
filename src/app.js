@@ -6,8 +6,8 @@ const moviesRouter = require("./movies/movies.router");
 
 app.use(express.json());
 
-app.use("/theaters", theatersRouter);
 app.use("/movies", moviesRouter);
+app.use("/theaters", theatersRouter);
 
 // Not found handler
 app.use((req, res, next) => {
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   
   // Error handler
   app.use((error, req, res, next) => {
-    console.error(error);
+    // console.error(error);
     const { status = 500, message = "Something went wrong!" } = error;
     res.status(status).json({ error: message });
   });

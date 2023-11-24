@@ -4,7 +4,7 @@ function list() {
     return knex("movies").select("*");
 };
 
-function showingProvided() {
+function showingTrue() {
     return knex("movies as m")
         .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
         .join("theaters as t", "mt.theater_id", "t.theater_id")
@@ -19,6 +19,6 @@ function read(movie_Id) {
 
 module.exports = {
     list,
-    showingProvided,
+    showingTrue,
     read,
 };
