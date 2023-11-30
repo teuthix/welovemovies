@@ -8,7 +8,9 @@ function showingTrue() {
     return knex("movies as m")
         .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
         .join("theaters as t", "mt.theater_id", "t.theater_id")
-        .select("mt.*");
+        .select("m.*")
+        .where({ "mt.is_showing": true })
+        .distinct();
 };
 
 function read(movie_Id) {

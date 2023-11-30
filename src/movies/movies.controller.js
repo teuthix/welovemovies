@@ -35,7 +35,7 @@ async function read(req, res) {
 async function isShowing(req, res, next) {
     const showParam = req.query.is_showing;
     const data = await moviesService.showingTrue();
-    console.log(data, "test");
+    // console.log(data, "test");
     if(showParam === 'true' ) {
         res.json({ data });
     } else {
