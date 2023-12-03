@@ -41,8 +41,24 @@ async function getTheaters(req, res, next) {
     next();
 }
 
+// get the reviews for the movie
+// for each review, get the critic's information
+async function getReviews(req, res, next) {
+    // reviews is an array of objects
+    const data = await moviesService.getReviews(req.params.movieId);
+    if(data){
+        // const movieReviews = Object.values(data);
+        // console.log(movieReviews);
+        // res.json({movieReviews});
+        res.json({data});
+    }
+    // console.log(reviews);
+    next();
+}
+
 module.exports = {
     read: [asyncErrorBoundary(movieExists), read],
     list: [asyncErrorBoundary(isShowing), list],
     theaters: [asyncErrorBoundary(getTheaters)],
+    reviews: [asyncErrorBoundary(getReviews)],
 };

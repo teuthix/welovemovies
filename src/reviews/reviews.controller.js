@@ -3,6 +3,7 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 async function reviewExists(req, res, next) {
     const review = await reviewsService.read(req.params.reviewId);
+    // console.log(review);
     if(review) {
         res.locals.review = review;
         return next();
@@ -16,9 +17,9 @@ async function update(req, res, next){
         ...req.body.data,
         review_id: res.locals.review.review_id,
     };
-    console.log(updatedReview, "test");
     const data = await reviewsService.update(updatedReview);
-    res.json({data: updatedReview});
+    // console.log(data);
+    res.json({ data });
 }
 
 module.exports = {

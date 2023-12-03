@@ -10,6 +10,10 @@ router.route("/:movieId/theaters")
     .get(controller.theaters)
     .all(methodNotAllowed);
 
+router.route("/:movieId/reviews")
+    .get(controller.reviews)
+    .all(methodNotAllowed);
+
 router.route("/:movieId")
     .get(controller.read)
     .all(methodNotAllowed);

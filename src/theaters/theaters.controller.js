@@ -13,18 +13,16 @@ async function list(req, res, next) {
 
 async function getMovies(req, res, next) {
     const theaters = res.locals.theaters;
-    //array of theater ids
     const theaterIds = theaters.map((theater) => {
         return theater.theater_id;
     });
-
-    const theaterWithMovies = await Promise.all(theaterIds.map(async (theaterId) => {
-        const movies = await theatersService.findMoviesByTheaterId(theaterId);
-        return { movies };
-    }));
     
-    // console.log(theaterWithMovies);
-    res.json({ data: theaterWithMovies });
+    const data = await theatersService.findMoviesByTheaterId(theaterIds);
+    console.log(theaters);
+    if(data) {
+        res.json({ data: data });
+    }
+    next();
 }
 
 // return all theaters, each with the movies playing there
