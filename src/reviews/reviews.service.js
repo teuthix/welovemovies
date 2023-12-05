@@ -16,15 +16,25 @@ function update(updatedReview) {
         .leftJoin("critics as c", "c.critic_id", "r.critic_id")
         .select("r.content", "r.created_at", "c.preferred_name", "c.surname", "c.organization_name", "r.critic_id", "r.movie_id", "r.review_id", "r.score", "r.updated_at")
         .where({ review_id: updatedReview.review_id })
-        .first()
-        .then(addCritic);
+        // .first()
+        // .then(addCritic);
+        // .update(updatedReview, "*");
         // .select("*")
         // .where({ review_id: updatedReview.review_id })
-        // .update(updatedReview, "*");
         // .then((updated) => updated[0]);
+}
+
+function getReviewCritic(review_id){
+    return knex("reviews as r")
+        .leftJoin("critics as c", "c.critic_id", "r.critic_id")
+        .select("r.content", "r.created_at", "c.preferred_name", "c.surname", "c.organization_name", "r.critic_id", "r.movie_id", "r.review_id", "r.score", "r.updated_at")
+        .where({ review_id: review_id })
+        .first()
+        .then(addCritic);
 }
 
 module.exports = {
     read,
     update,
+    getReviewCritic,
 };

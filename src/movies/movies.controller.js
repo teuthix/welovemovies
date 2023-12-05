@@ -17,17 +17,20 @@ async function read(req, res) {
 
 async function isShowing(req, res, next) {
     const showParam = req.query.is_showing;
-    const data = await moviesService.showingTrue();
+    // const data = await moviesService.showingTrue();
     // console.log(data, "test");
     if(showParam === 'true' ) {
-        res.json({ data });
-    } else {
-        next();
+        res.locals.isShowing = true;
+        // res.json({ data });
     }
+    // } else {
+        next();
+    // }
 }
 
 async function list(req, res, next) {
-    const data = await moviesService.list();
+    const data = await moviesService[res.locals.isShowing ? "showingTrue" : "list"]();
+    // console.log(data);
     res.json({ data });
 }
 
@@ -46,13 +49,11 @@ async function getTheaters(req, res, next) {
 async function getReviews(req, res, next) {
     // reviews is an array of objects
     const data = await moviesService.getReviews(req.params.movieId);
-    if(data){
-        // const movieReviews = Object.values(data);
-        // console.log(movieReviews);
-        // res.json({movieReviews});
+    // console.log(data[0].preferred_name, 5555555);
+    // const critics = await moviesService.getCritics(req.params.movieId);
+    if(data) {
         res.json({data});
     }
-    // console.log(reviews);
     next();
 }
 
