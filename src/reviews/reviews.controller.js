@@ -22,6 +22,14 @@ async function update(req, res, next){
     res.json({ data });
 }
 
+async function destroy(req, res, next) {
+    reviewsService
+        .delete(res.locals.review.review_id)
+        .then(() => res.sendStatus(204))
+        .catch(next);
+}
+
 module.exports = {
     update: [asyncErrorBoundary(reviewExists), update],
+    destroy: [asyncErrorBoundary(reviewExists), destroy],
 };

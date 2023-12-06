@@ -1,36 +1,16 @@
 const theatersService = require("./theaters.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
+// return all theaters and movies playing at each
 async function list(req, res, next) {
-    const theaterId = req.params.theater_id
-    const data = await theatersService.list(theaterId);
-    // console.log(data);
+    const data = await theatersService.list();
     if (data){
-        res.locals.theaters = data;
-        next();
+        // console.log(data[0].name);
+        res.json({data});
     }
     next({ status: 404, message: "Theater cannot be found." });
 }
 
-// async function getMovies(req, res, next) {
-//     const theaters = res.locals.theaters;
-//     const theaterIds = theaters.map((theater) => {
-//         return theater.theater_id;
-//     });
-    
-//     const data = await theatersService.findMoviesByTheaterId(theaterIds);
-//     // console.log(theaters);
-//     if(data) {
-//         res.json({ data: data });
-//     }
-//     next();
-// }
-
-// return all theaters, each with the movies playing there
-// get all the theaters
-// then find all the movies for that theater's id
-
-
 module.exports = {
-    list: [asyncErrorBoundary(list)],
+    list: asyncErrorBoundary(list),
 };

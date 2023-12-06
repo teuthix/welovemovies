@@ -33,8 +33,14 @@ function getReviewCritic(review_id){
         .then(addCritic);
 }
 
+function destroy(review_id) {
+    return knex("reviews")
+        .where({ review_id })
+        .del();
+}
 module.exports = {
     read,
     update,
     getReviewCritic,
+    delete: destroy,
 };

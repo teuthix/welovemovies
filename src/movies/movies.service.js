@@ -37,28 +37,19 @@ function getTheaters(movieId){
         .distinct("t.theater_id");
 }
 
-// function getReviews(movieId){
-//         return knex("reviews as r")
-//             .leftJoin("critics as c", "c.critic_id", "r.critic_id")
-//             .select("r.*", "c.*")
-//             .where({ "r.movie_id": movieId})
-//             .then(addCritic);
-//     }
-
-// get critic info for ONE critic
-function getCritic(criticId) {
-    return knex("reviews as r")
-        .join("critics as c", "r.critic_id", "c.critic_id")
-        .select("c.*")
-        .where({"r.critic_id": criticId});
-}
+// // get critic info for ONE critic
+// function getCritic(criticId) {
+//     return knex("reviews as r")
+//         .join("critics as c", "r.critic_id", "c.critic_id")
+//         .select("c.*")
+//         .where({"r.critic_id": criticId});
+// }
 
 // get all reviews for movie
 function getReviews(movieId) {
-    
     return knex("reviews as r")
         .join("critics as c", "r.critic_id", "c.critic_id")
-        .select("r.*", "c.*")
+        .select("r.*", "c.*", "c.created_at as critic_created_at")
         .where({"r.movie_id": movieId})
         .then(reviews => reviews.map(addCritic));
 }
@@ -69,5 +60,5 @@ module.exports = {
     read,
     getTheaters,
     getReviews,
-    getCritic,
+    // getCritic,
 };
