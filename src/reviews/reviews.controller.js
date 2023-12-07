@@ -3,8 +3,8 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 async function reviewExists(req, res, next) {
     const review = await reviewsService.read(req.params.reviewId);
-    // console.log(review);
     if(review) {
+        // console.log(review);
         res.locals.review = review;
         return next();
     }
