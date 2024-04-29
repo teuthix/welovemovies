@@ -36,14 +36,6 @@ function getTheaters(movieId) {
     .distinct("t.theater_id");
 }
 
-// // get critic info for ONE critic
-// function getCritic(criticId) {
-//     return knex("reviews as r")
-//         .join("critics as c", "r.critic_id", "c.critic_id")
-//         .select("c.*")
-//         .where({"r.critic_id": criticId});
-// }
-
 // get all reviews for movie
 function getReviews(movieId) {
   return knex("reviews as r")
@@ -59,5 +51,4 @@ module.exports = {
   read,
   getTheaters,
   getReviews,
-  // getCritic,
 };

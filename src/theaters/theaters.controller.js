@@ -5,7 +5,6 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 async function list(req, res, next) {
   const data = await theatersService.list();
   if (data) {
-    // console.log(data[0].name);
     res.json({ data });
     return;
   }
