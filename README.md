@@ -14,3 +14,18 @@ This is the backend to a website designed to show a what movies are playing an w
 | /reviews/:reviewId        | DELETE | deletes given review                         |
 
 This project was built using Node.js, Express, PostgreSQL, Knex
+
+![](images/home.png)
+Website Home
+
+![](images/moviesList.png)
+List of All Movies `/movies`
+
+![](images/allMoviesForTheater.png)
+List all movies playing at theater `/theaters`
+
+![](images/movie.png)
+Movie that matches movieId `/movies/:movieId`
+
+![](images/review.png)
+Review on `/movies/:movieId` page
