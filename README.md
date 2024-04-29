@@ -15,17 +15,25 @@ This is the backend to a website designed to show a what movies are playing an w
 
 This project was built using Node.js, Express, PostgreSQL, Knex
 
+## Website
+
 ![](images/home.png)
 Website Home
 
+### /movies
+
 ![](images/moviesList.png)
-List of All Movies `/movies`
+List of All Movies
+
+### /theaters
 
 ![](images/allMoviesForTheater.png)
-List all movies playing at theater `/theaters`
+List all movies playing at theater
+
+### /movies/:movieId
 
 ![](images/movie.png)
-Movie that matches movieId `/movies/:movieId`
+Movie that matches movieId
 
 ![](images/review.png)
 Review on `/movies/:movieId` page
